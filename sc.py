@@ -1,5 +1,3 @@
-import pandas
-import numpy as np
 
 People = ['papa','toto','tata','solo','mamam','diallo']
 
