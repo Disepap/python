@@ -23,12 +23,6 @@ jobs:
       versionSpec: '$(python.version)'
       architecture: 'x64'
 
-
-  - script: |
-      pip install pytest
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml
-    displayName: 'pytest'
-
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: '**/test-results.xml'
