@@ -15,10 +15,6 @@ jobs:
     matrix:
       Python35:
         python.version: '3.5'
-      Python36:
-        python.version: '3.6'
-      Python37:
-        python.version: '3.7'
     maxParallel: 4
 
   steps:
@@ -28,21 +24,11 @@ jobs:
       architecture: 'x64'
 
 
-  - script: |
-      pip install pytest
-      pytest tests --doctest-modules --junitxml=junit/test-results.xml
-    displayName: 'pytest'
-
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: '**/test-results.xml'
       testRunTitle: 'Python $(python.version)'
     condition: succeededOrFailed()
-
-- job: 'Publish'
-  dependsOn: 'Test'
-  pool:
-    vmImage: 'Ubuntu-16.04'
 
   steps:
   - task: UsePythonVersion@0
